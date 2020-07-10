@@ -31,7 +31,11 @@ def add_record():
     email = input("Enter the email: ")
     title = input("Enter the job title: ")
     hire_date = input("Enter the hire date: ")
-    salary = int(input("Enter the salary: "))
+    salary = input("Enter the salary (Default 0): ")
+    if salary.isnumeric():
+        salary = int(salary)
+    else:
+        salary = 0
 
     new_doc = { 
         "first_name": first.lower(),
@@ -124,8 +128,11 @@ def edit_record():
             if key != "_id":    
                 if key == "salary":
                     update_doc[key] = input(f"{key} [{value}]: ") # first [alex] : type any thing or just leave it empty
-                    if update_doc[key] !="":
-                        update_doc[key] = int(update_doc[key])
+                    if update_doc[key] !="": 
+                        if update_doc[key].isnumeric():
+                            update_doc[key] = int(update_doc[key])
+                        else:
+                            update_doc[key] = value
                 else:
                     update_doc[key] = input(f"{key} [{value}]: ").lower()
 
